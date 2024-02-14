@@ -2,22 +2,21 @@ import './App.css'
 import { Header } from './conponents/header'
 import { Footer } from './conponents/footer'
 import { Body } from './conponents/body'
-import { Fillter } from './conponents/fillter'
 import axios from 'axios'
 import { Detail } from './conponents/detail/Detail'
-import { ListProduct } from './conponents/listProduct'
+import { useEffect, useState } from 'react'
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
 function App() {
-  const getProduct= async()=>{
-    await axios.get(`https://h5ltj4-8080.csb.app/books`)
-    .then((response)=>{
-      console.log(response);
-    })
-  }
   return (
     <div>
-      <Header/>
-      <Body/>
-      <Footer/>
+      <BrowserRouter>
+        <Header/>
+        <Routes>
+          <Route path='/' Component	={Body} />
+          <Route path='/product/:id' Component={Detail}/>
+        </Routes>
+        <Footer/>
+      </BrowserRouter>
     </div>
   )
 }
