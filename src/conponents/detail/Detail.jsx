@@ -17,15 +17,33 @@ export const Detail = () => {
     .catch(err=>console.log(err));
   },[])
 
-  let info=(attributeCode)=>{
+  let infoValue=(attributeCode)=>{
+    let code
     if(product && product.specifications){
      product.specifications[0].attributes.forEach(attribute => {
       if (attribute.code === attributeCode) {
-         attribute.value; 
+        code = attribute.value; 
       }})
+      return code
     }
   }
-
+  let infoName=(attributeCode)=>{
+    let code
+    if(product && product.specifications){
+     product.specifications[0].attributes.forEach(attribute => {
+      if (attribute.code === attributeCode) {
+        code = attribute.name; 
+      }})
+      return code
+    }
+  }
+  const [count,setCount]=useState(1)
+  const handleMinus=()=>{
+    if(count>1) setCount(count-1)
+  }
+  const handlePlus=()=>{
+    setCount(count+1)
+  }
   return (
     <div className='bg-gray-100 flex gap-4 justify-center'>
       <div className='w-80 bg-white p-3'>
@@ -79,56 +97,55 @@ export const Detail = () => {
           <p className='text-bg-gray-500 text-xs'></p>
         </div>
         <div className='flex gap-x-2 items-center'>
-            <div className='text-2xl font-semibold'>{product.original_price}<sup>đ</sup></div>
+            <div className='text-2xl font-semibold'>{product && product.original_price ? product.original_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : ''}</div>
             <div className='text-xs rounded-lg bg-gray-200 border-0 font-medium'>-26%</div>
         </div>
         <p className='font-semibold mt-3'>Thông tin chi tiết</p>
         <tr>
-          <th className='text-sm text-gray-400 font-normal text-left '>Phiên bản sách</th>
-          <td className='pl-28 pt-2'>Phiên bản thường</td>
+          <th className='text-sm text-gray-400 font-normal text-left '>{infoName("edition")}</th>
+          <td className='pl-28 pt-2'>{infoValue("edition")}</td>
         </tr>
         <tr className=''>
-          <th className='text-sm text-gray-400 font-normal text-left'>Công ty phát hành</th>
-          <td className='pl-28 pt-2'></td>
+          <th className='text-sm text-gray-400 font-normal text-left'>{infoName("publisher_vn")}</th>
+          <td className='pl-28 pt-2'>{infoValue("publisher_vn")}</td>
         </tr>
         <tr>
-          <th className='text-sm text-gray-400 font-normal text-left'>Ngày xuất bản</th>
-          <td className='pl-28 pt-2'>{info("publication_date")}</td>
+          <th className='text-sm text-gray-400 font-normal text-left'>{infoName("publication_date")}</th>
+          <td className='pl-28 pt-2'>{infoValue("publication_date")}</td>
         </tr>
         <tr>
-          <th className='text-sm text-gray-400 font-normal text-left'>Kích thước</th>
-          <td className='pl-28 pt-2'>Phiên bản thường</td>
+          <th className='text-sm text-gray-400 font-normal text-left'>{infoName("dimensions")}</th>
+          <td className='pl-28 pt-2'>{infoValue("dimensions")}</td>
         </tr>
         <tr>
-          <th className='text-sm text-gray-400 font-normal text-left'>Dịch Giả</th>
-          <td className='pl-28 pt-2'>Phiên bản thường</td>
+          <th className='text-sm text-gray-400 font-normal text-left'>{infoName("dich_gia")}</th>
+          <td className='pl-28 pt-2'>{infoValue("dich_gia")}</td>
         </tr>
         <tr>
-          <th className='text-sm text-gray-400 font-normal text-left'>Loại bìa</th>
-          <td className='pl-28 pt-2'>Phiên bản thường</td>
+          <th className='text-sm text-gray-400 font-normal text-left'>{infoName("book_cover")}</th>
+          <td className='pl-28 pt-2'>{infoValue("book_cover")}</td>
         </tr>
         <tr>
-          <th className='text-sm text-gray-400 font-normal text-left'>Số trang</th>
-          <td className='pl-28 pt-2'>Phiên bản thường</td>
+          <th className='text-sm text-gray-400 font-normal text-left'>{infoName("number_of_page")}</th>
+          <td className='pl-28 pt-2'>{infoValue("number_of_page")}</td>
         </tr>
         <tr>
-          <th className='text-sm text-gray-400 font-normal text-left'>Nhà xuất bản  </th>
-          <td className='pl-28 pt-2'>Phiên bản thường</td>
+          <th className='text-sm text-gray-400 font-normal text-left'>{infoName("manufacturer")}</th>
+          <td className='pl-28 pt-2'>{infoValue("manufacturer")}</td>
         </tr>
-        <p className='font-semibold'>Mô tả sản phẩm</p>
-        <img src={anh} alt="" />
+        <p className='font-semibold mt-10'>Mô tả sản phẩm</p>
+        <img className='w-1/2 ' src={product && product.images ? product.images[0].thumbnail_url : ''} alt="" />
         <p>{product.description}</p>
       </div>
-
       <div className='flex flex-col gap-4 bg-white p-4'>
         <p className='font-semibold'>Số Lượng</p>
         <div className='flex items-center gap-2'>
-          <button className='rounded border border-gray-300 border-solid px-4 py-2'>-</button>
-          <p className='rounded border border-gray-300 border-solid px-4 py-2'>1</p>
-          <button className='rounded border border-gray-300 border-solid px-4 py-2'>+</button>
+          <button className='rounded border border-gray-300 border-solid text-2xl flex items-center justify-center font-bold text-gray-500 w-10 h-10' onClick={handleMinus}>-</button>
+          <p className='rounded border border-gray-300 border-solid px-4 py-2'>{count}</p>
+          <button className='rounded border border-gray-300 border-solid text-2xl flex items-center justify-center font-bold text-gray-500 w-10 h-10' onClick={handlePlus}>+</button>
         </div>
         <p className='font-semibold'>Tạm tính</p>
-        <div className='text-2xl font-semibold mt-2 mb-4'>257.000<sup>đ</sup></div>
+        <div className='text-2xl font-semibold mt-2 mb-4'>{product && product.original_price ? (product.original_price*count).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : ''}</div>
         <div className='flex flex-col gap-3'>
           <button className='text-white bg-red-600 border-0 py-2 px-32 rounded'>Mua ngay</button>
           <button className='py-2 px-32 text-blue-500 border border-blue-500 rounded'>Thêm vào giỏ</button>
