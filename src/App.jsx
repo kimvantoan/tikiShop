@@ -1,24 +1,24 @@
-import './App.css'
-import { Header } from './conponents/header'
-import { Footer } from './conponents/footer'
-import { Body } from './conponents/body'
-import axios from 'axios'
-import { Detail } from './conponents/detail/Detail'
-import { useEffect, useState } from 'react'
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import "./App.css";
+import { Header } from "./conponents/header/Header";
+import { Footer } from "./conponents/footer";
+import { Body } from "./conponents/body/Body";
+import { Detail } from "./conponents/detail/Detail";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 function App() {
+  const [result, setResult] = useState([]);
   return (
     <div>
       <BrowserRouter>
-        <Header/>
+        <Header setResult={setResult} />
         <Routes>
-          <Route path='/' Component	={Body} />
-          <Route path='/product/:id' Component={Detail}/>
+          <Route path="/" element={<Body result={result} />} />
+          <Route path="/product/:id" element={<Detail />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
