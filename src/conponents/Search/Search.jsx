@@ -24,15 +24,15 @@ const Search = ({ setResult }) => {
     setResult(filtered);
   }, [searchQuery]);
   return (
-    <div className="w-8/12 flex items-center justify-center border border-gray-400 border-solid rounded-lg py-2.5 px-4">
-      <img className="w-7" src={search} alt="" />
+    <div className="md:w-8/12 bg-white  flex items-center justify-center border border-gray-400 border-solid rounded-md md:py-2.5 md:px-4 py-1 ">
+      <img className="md:w-7 w-4" src={search} alt="" />
       <input
         className="w-10/12 outline-0"
         type="text"
         onChange={handleSearch}
         value={searchQuery}
       />
-      <button className="text-blue-600">Tìm kiếm</button>
+      <button className="text-blue-600 hidden md:block">Tìm kiếm</button>
     </div>
   );
 };

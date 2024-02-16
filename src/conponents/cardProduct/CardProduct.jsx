@@ -2,7 +2,7 @@ import React from 'react'
 import star from '../assets/star.svg'
 export const CardProduct = ({item}) => {
     return (  
-      <div className='w-48 bg-white h-96 relative'>
+      <div className='w-48 bg-white h-96 relative '>
           <img className='mb-3 w-48 h-48 ' src={item.images[0].base_url} alt="" />
           <div className='px-2 flex flex-col gap-y-2'>
             <div className='text-sm'>{item.name}</div>

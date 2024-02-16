@@ -1,6 +1,6 @@
 import "./App.css";
 import { Header } from "./conponents/header/Header";
-import { Footer } from "./conponents/footer";
+import { Footer } from "./conponents/footer/Footer";
 import { Body } from "./conponents/body/Body";
 import { Detail } from "./conponents/detail/Detail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

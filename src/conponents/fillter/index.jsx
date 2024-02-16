@@ -4,7 +4,7 @@ import star from '../assets/star.svg'
 
 export const Fillter = () => {
   return (
-    <div className='bg-white p-2 flex flex-col gap-3'>
+    <div className='bg-white p-2 hidden md:flex flex-col gap-3'>
         <ul className='flex flex-col gap-3'>
             <li className='font-medium'>Danh Mục Sản Phẩm</li>
             <li className='text-xs'>English Books</li>

@@ -6,8 +6,8 @@ import zalo from '../assets/zalo.svg'
 
 export const Footer = () => {
   return (
-    <div>
-        <div className='flex gap-x-24 mx-28 my- py-4 border-b'>
+    <div className='hidden md:block'>
+        <div className=' md:flex gap-x-24 mx-28 my- py-4 border-b'>
             <div>
                 <p className='font-medium text-base'>Hỗ trợ khách hàng</p>
                 <p className='text-gray-500 text-xs'>Hotline: 1900-6035(1000 đ/phút, 8-21h kể cả T7, CN)</p>
@@ -51,14 +51,15 @@ export const Footer = () => {
                 </div>
                 <p className='font-medium mt-4'>Kết nối với chúng tôi</p>
             </div>
-        </div>
 
+        </div>
         <div className='border-b mx-28 py-4 '> 
             <p className='font-medium text-base'>Công ty TNHH TIKI</p>
             <p className='text-gray-500 text-xs'>Địa chỉ trụ sở: Tòa nhà Viettel, Số 285, Đường Cách Mạng Tháng 8, Phường 12, Quận 10, Thành phố Hồ Chí Minh</p>
             <p className='text-gray-500 text-xs'>Giấy chứng nhận đăng ký doanh nghiệp số 0309532909 do Sở Kế Hoạch và Đầu Tư Thành phố Hồ Chí Minh cấp lần đầu vào ngày 06/01/2010.</p>
             <span className='text-gray-500 text-xs'>Hotline: </span><span className='text-blue-500 text-xs'>1900 6035</span>
         </div>
+
     </div>
   )
 }
